@@ -1,3 +1,6 @@
+/*
+ * Ofrece los accesos principales y marca la sección que corresponde a la URL.
+ */
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const OPCIONES = [
@@ -8,7 +11,9 @@ const OPCIONES = [
 ]
 
 function Navbar() {
+  // Permite cambiar de sección al pulsar una opción.
   const navigate = useNavigate()
+  // Lee la ruta actual para resaltar el botón correspondiente.
   const { pathname } = useLocation()
 
   const estaActivo = (ruta) =>

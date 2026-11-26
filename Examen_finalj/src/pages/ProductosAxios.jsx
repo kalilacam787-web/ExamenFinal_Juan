@@ -1,23 +1,52 @@
+/*
+ * Consulta DummyJSON con Axios y vuelve a cargar los productos al cambiar categoría.
+ */
 import { useEffect, useState } from 'react'
 
 import { apiDummy } from '../services/apiDummy.js'
 import { useCarritoStore } from '../store/useCarritoStore.js'
 import { formatearPrecio } from '../utils/formato.js'
 
+const CATEGORIAS = [
+  { valor: 'todas', texto: 'Todas' },
+  { valor: 'groceries', texto: 'Mercado' },
+  { valor: 'beauty', texto: 'Belleza' },
+  { valor: 'smartphones', texto: 'Celulares' },
+  { valor: 'laptops', texto: 'Portátiles' },
+  { valor: 'home-decoration', texto: 'Hogar' },
+]
+
 function ProductosAxios() {
+  // Guarda los productos recibidos para mostrarlos en la vitrina.
   const [productos, setProductos] = useState([])
+  // Indica si la consulta para la categoría seleccionada está en curso.
   const [cargando, setCargando] = useState(true)
+  // Conserva el mensaje que se muestra si falla la consulta.
   const [error, setError] = useState('')
+  // Define qué categoría se consulta; "todas" muestra el catálogo general.
+  const [categoria, setCategoria] = useState('todas')
+  // Usa la acción global para guardar un producto en la canasta.
   const agregarProducto = useCarritoStore((state) => state.agregarProducto)
 
+  // Consulta de nuevo cuando cambia la categoría y cancela la petición anterior.
   useEffect(() => {
     const controlador = new AbortController()
 
     async function cargarProductos() {
       try {
-        const respuesta = await apiDummy.get('/products/category/groceries?limit=30', {
+        setCargando(true)
+        setError('')
+        const endpoint =
+          categoria === 'todas'
+            ? '/products?limit=24'
+            : `/products/category/${categoria}`
+        const respuesta = await apiDummy.get(endpoint, {
           signal: controlador.signal,
         })
+
+        if (!Array.isArray(respuesta.data.products)) {
+          throw new Error('El servicio devolvió una lista inválida.')
+        }
 
         setProductos(
           respuesta.data.products.map((producto) => ({
@@ -40,30 +69,53 @@ function ProductosAxios() {
 
     cargarProductos()
     return () => controlador.abort()
-  }, [])
-
-  if (cargando) return <p role="status">Cargando productos con Axios...</p>
-  if (error) return <p role="alert">{error}</p>
-  if (productos.length === 0) return <p>No hay productos disponibles.</p>
+  }, [categoria])
 
   return (
     <div>
-      <h3>Productos de mercado</h3>
-      <div className="catalogo__grilla">
-        {productos.map((producto) => (
-          <article key={producto.id} className="producto">
-            {producto.imagen && (
-              <img src={producto.imagen} alt={producto.titulo} loading="lazy" />
-            )}
-            <p>{producto.categoria}</p>
-            <h4>{producto.titulo}</h4>
-            <p>{formatearPrecio(producto.precio)}</p>
-            <button type="button" onClick={() => agregarProducto(producto)}>
-              Agregar a la canasta
-            </button>
-          </article>
-        ))}
+      <div className="catalogo__barra">
+        <h3>Productos de DummyJSON</h3>
+        <select
+          className="catalogo__selector"
+          value={categoria}
+          onChange={(event) => setCategoria(event.target.value)}
+          aria-label="Filtrar por categoría"
+        >
+          {CATEGORIAS.map((opcion) => (
+            <option key={opcion.valor} value={opcion.valor}>
+              {opcion.texto}
+            </option>
+          ))}
+        </select>
       </div>
+
+      {cargando ? (
+        <p role="status">Cargando productos con Axios...</p>
+      ) : error ? (
+        <p role="alert">{error}</p>
+      ) : productos.length === 0 ? (
+        <p>No hay productos disponibles.</p>
+      ) : (
+        <div className="catalogo__grilla">
+          {productos.map((producto) => (
+            <article key={producto.id} className="producto">
+              {producto.imagen && (
+                <img
+                  src={producto.imagen}
+                  alt={producto.titulo}
+                  loading="lazy"
+                />
+              )}
+              <p>{producto.categoria}</p>
+              <h4>{producto.titulo}</h4>
+              <p>{formatearPrecio(producto.precio)}</p>
+              <button type="button" onClick={() => agregarProducto(producto)}>
+                Agregar a la canasta
+              </button>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

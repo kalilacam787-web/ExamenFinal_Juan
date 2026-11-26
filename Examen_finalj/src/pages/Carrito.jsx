@@ -1,20 +1,30 @@
+/*
+ * Muestra los productos de la canasta y permite ajustar sus cantidades o quitarlos.
+ */
 import { Link } from 'react-router-dom'
 
 import { useCarritoStore } from '../store/useCarritoStore.js'
 import { formatearPrecio } from '../utils/formato.js'
 
 function Carrito() {
+
+  // Lee los productos que se muestran en la canasta.
   const productos = useCarritoStore((state) => state.productos)
+  // Suma una unidad al producto seleccionado.
   const sumarCantidad = useCarritoStore((state) => state.sumarCantidad)
+  // Resta una unidad al producto seleccionado.
   const restarCantidad = useCarritoStore((state) => state.restarCantidad)
+  // Obtiene la acción para quitar un producto por completo.
   const eliminarProducto = useCarritoStore((state) => state.eliminarProducto)
 
   if (productos.length === 0) {
     return (
+
       <div className="estado estado--vacio">
         <p>Tu canasta está vacía.</p>
         <Link to="/catalogo">Ir a la vitrina</Link>
       </div>
+      
     )
   }
 

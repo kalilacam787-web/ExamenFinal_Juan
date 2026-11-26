@@ -1,3 +1,6 @@
+/*
+ * Organiza las pestañas de Fetch y Axios y muestra su contenido anidado.
+ */
 import { NavLink, Outlet } from 'react-router-dom'
 
 import banner from '../assets/banner-catalogo.svg'
@@ -18,7 +21,7 @@ function SectionCatalogo() {
           Cargados con Axios
         </NavLink>
       </nav>
-      <div className="seccion-catalogo__contenido">
+      <div className="seccion-catalog__contenido">
         <Outlet />
       </div>
     </section>

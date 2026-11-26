@@ -1,3 +1,6 @@
+/*
+ * Reúne las reglas de ESLint para JavaScript, React Hooks y la actualización de componentes.
+ */
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'

@@ -1,3 +1,6 @@
+/*
+ * Mantiene la cabecera, navegación y pie de página alrededor de cada sección.
+ */
 import { Outlet } from 'react-router-dom'
 
 import Footer from '../components/Footer.jsx'

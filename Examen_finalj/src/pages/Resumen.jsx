@@ -1,3 +1,6 @@
+/*
+ * Calcula el pedido, muestra sus totales y permite confirmarlo o vaciar la canasta.
+ */
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,8 +10,11 @@ import { formatearPrecio } from '../utils/formato.js'
 const COSTO_ENVIO = 5
 
 function Resumen() {
+  // Lee el contenido actual para calcular unidades, subtotal y total.
   const productos = useCarritoStore((state) => state.productos)
+  // Usa la acción global para vaciar la canasta al confirmar o cancelar.
   const vaciarCarrito = useCarritoStore((state) => state.vaciarCarrito)
+  // Guarda el mensaje temporal que confirma el pedido.
   const [mensaje, setMensaje] = useState('')
 
   const unidades = productos.reduce(
@@ -23,6 +29,7 @@ function Resumen() {
   const total = subtotal + envio
   const canastaVacia = productos.length === 0
 
+  // Oculta el aviso unos segundos después de mostrarlo.
   useEffect(() => {
     if (!mensaje) return
 

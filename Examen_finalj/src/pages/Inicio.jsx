@@ -1,3 +1,6 @@
+/*
+ * Da la bienvenida y ofrece un acceso directo a la vitrina de productos.
+ */
 import { Link } from 'react-router-dom'
 
 function Inicio() {

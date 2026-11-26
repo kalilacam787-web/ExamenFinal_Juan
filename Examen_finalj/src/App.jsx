@@ -1,3 +1,6 @@
+/*
+ * Define las rutas principales y anida las páginas dentro del layout compartido.
+ */
 import { Route, Routes } from 'react-router-dom'
 
 import Layout from './layouts/Layout.jsx'

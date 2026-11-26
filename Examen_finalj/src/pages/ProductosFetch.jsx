@@ -1,3 +1,6 @@
+/*
+ * Consulta FakeStoreAPI con Fetch, permite buscar por nombre y agregar productos.
+ */
 import { useEffect, useState } from 'react'
 
 import { useCarritoStore } from '../store/useCarritoStore.js'
@@ -6,12 +9,19 @@ import { formatearPrecio } from '../utils/formato.js'
 const URL_FAKESTORE = 'https://fakestoreapi.com/products'
 
 function ProductosFetch() {
+
+  // Esto guarda la lista recibida de FakeStoreAPI.
   const [productos, setProductos] = useState([])
+  // Esto indica si la consulta inicial sigue en curso.
   const [cargando, setCargando] = useState(true)
+  // Conserva el mensaje que se muestra si llega a fallar la consulta.
   const [error, setError] = useState('')
+  // Controla el texto usado para filtrar los productos.
   const [busqueda, setBusqueda] = useState('')
+  // Usa la acción global para guardar un producto en la canasta.
   const agregarProducto = useCarritoStore((state) => state.agregarProducto)
 
+  // Carga el catálogo al entrar y cancela la petición al salir de la página.
   useEffect(() => {
     const controlador = new AbortController()
 

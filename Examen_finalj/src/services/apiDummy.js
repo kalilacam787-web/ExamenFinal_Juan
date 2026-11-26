@@ -1,3 +1,6 @@
+/*
+ * Comparte la configuración de Axios usada para consultar DummyJSON.
+ */
 import axios from 'axios'
 
 export const apiDummy = axios.create({
