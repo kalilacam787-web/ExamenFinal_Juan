@@ -1,16 +1,29 @@
-# React + Vite
+# Mercado Popayán
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vitrina de productos de mercado y canasta de compras construida con React, Vite,
+React Router y Zustand. La vitrina consume productos de demostración de la
+categoría `groceries` de [DummyJSON](https://dummyjson.com).
 
-Currently, two official plugins are available:
+## Ejecutar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Desde la raíz del repositorio:
 
-## React Compiler
+```powershell
+cd Examen_finalj
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Rutas
 
-## Expanding the ESLint configuration
+- `/`: inicio
+- `/catalogo`: vitrina cargada desde el servicio externo
+- `/compras`: canasta con controles para aumentar, disminuir y quitar productos
+- `/compras/resumen`: cantidades y total de la canasta
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+El estado de la canasta se administra con Zustand y permanece en memoria mientras
+la aplicación está abierta. DummyJSON entrega precios de demostración que se
+muestran en USD; no representan los precios de una tienda real.
+
+Los estilos visuales se desarrollarán después con CSS puro, sin Bootstrap ni
+Tailwind.
