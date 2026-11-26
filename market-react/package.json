@@ -1,0 +1,23 @@
+{
+  "name": "market-react",
+  "version": "1.0.0",
+  "description": "Taller SENA: Market en React + Vite con React Router, Fetch, Axios y Zustand",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.21.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.7",
+    "zustand": "^5.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.3.0",
+    "vite": "^8.3.8"
+  },
+  "private": true,
+  "type": "module"
+}

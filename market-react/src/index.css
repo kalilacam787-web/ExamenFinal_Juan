@@ -1,0 +1,613 @@
+/* ============================================================
+   index.css — ESTILOS GLOBALES EN CSS PURO
+   - Todos los colores en HEXADECIMAL (#RRGGBB).
+   - Estados visuales: :hover, :active, :focus-visible, :disabled,
+     clases de estado (--activo, .active de NavLink) y estados de
+     la interfaz (cargando, error, vacío, éxito).
+   - Sin frameworks: Flexbox y Grid.
+   ============================================================ */
+
+/* ---------- 1. PALETA (variables con valores hexadecimales) ---------- */
+:root {
+  --verde-900: #134E4A;
+  --verde-700: #0F766E; /* color principal */
+  --verde-500: #14B8A6;
+  --verde-100: #CCFBF1;
+  --naranja-600: #EA580C; /* color secundario */
+  --naranja-500: #F97316;
+  --ambar-400: #FBBF24;
+  --rojo-600: #DC2626; /* peligro / eliminar */
+  --rojo-100: #FEE2E2;
+  --gris-900: #1F2937; /* texto */
+  --gris-600: #4B5563;
+  --gris-300: #D1D5DB;
+  --gris-100: #F3F4F6; /* fondo */
+  --blanco: #FFFFFF;
+  --sombra: 0 4px 14px #0000001A; /* negro con 10% de opacidad (#RRGGBBAA) */
+  --radio: 12px;
+}
+
+/* ---------- 2. RESET BÁSICO ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background-color: var(--gris-100);
+  color: var(--gris-900);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Contenedor general: el footer siempre queda abajo */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* ---------- 3. HEADER ---------- */
+.header {
+  background-color: var(--verde-700);
+  color: var(--blanco);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__logo {
+  width: 48px;
+  height: 48px;
+}
+
+.header__titulo {
+  font-size: 1.5rem;
+}
+
+.header__lema {
+  font-size: 0.9rem;
+  color: var(--verde-100);
+}
+
+.header__carrito {
+  position: relative;
+  font-size: 1.6rem;
+  background-color: var(--verde-900);
+  border: 2px solid transparent;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+/* ESTADO hover: el botón crece y aparece un borde ámbar */
+.header__carrito:hover {
+  transform: scale(1.08);
+  border-color: var(--ambar-400);
+}
+
+/* Burbuja con el número de productos */
+.header__burbuja {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--naranja-500);
+  color: var(--blanco);
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  padding: 0 6px;
+}
+
+/* ---------- 4. NAVBAR (4 botones) ---------- */
+.navbar {
+  background-color: var(--verde-900);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 16px;
+}
+
+.navbar__btn {
+  background-color: transparent;
+  color: var(--verde-100);
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ESTADO hover */
+.navbar__btn:hover {
+  background-color: var(--verde-700);
+  color: var(--blanco);
+}
+
+/* ESTADO active (mientras se presiona) */
+.navbar__btn:active {
+  transform: scale(0.96);
+}
+
+/* ESTADO activo (ruta actual) — clase puesta desde React */
+.navbar__btn--activo {
+  background-color: var(--ambar-400);
+  color: var(--gris-900);
+  font-weight: 700;
+}
+
+.navbar__btn--activo:hover {
+  background-color: var(--ambar-400);
+  color: var(--gris-900);
+}
+
+/* ---------- 5. BOTONES GENERALES ---------- */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn--primario {
+  background-color: var(--verde-700);
+  color: var(--blanco);
+}
+
+.btn--primario:hover {
+  background-color: var(--verde-900);
+}
+
+.btn--secundario {
+  background-color: var(--naranja-500);
+  color: var(--blanco);
+}
+
+.btn--secundario:hover {
+  background-color: var(--naranja-600);
+}
+
+.btn--peligro {
+  background-color: var(--rojo-100);
+  color: var(--rojo-600);
+}
+
+.btn--peligro:hover {
+  background-color: var(--rojo-600);
+  color: var(--blanco);
+}
+
+/* ESTADO active: efecto de "presionado" */
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* ESTADO disabled: botón apagado y sin interacción */
+.btn:disabled {
+  background-color: var(--gris-300);
+  color: var(--gris-600);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ESTADO focus-visible: accesibilidad con teclado (Tab) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--ambar-400);
+  outline-offset: 2px;
+}
+
+/* ---------- 6. SECTIONS ---------- */
+.seccion {
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+}
+
+.seccion__banner {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.seccion__contenido {
+  padding: 24px;
+}
+
+/* Pestañas (NavLink) para las rutas hijas */
+.pestanas {
+  display: flex;
+  gap: 4px;
+  padding: 0 24px;
+  border-bottom: 2px solid var(--gris-300);
+}
+
+.pestanas__item {
+  padding: 12px 16px;
+  color: var(--gris-600);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.pestanas__item:hover {
+  color: var(--verde-700);
+}
+
+/* ESTADO activo: NavLink agrega la clase "active" automáticamente */
+.pestanas__item.active {
+  color: var(--verde-700);
+  border-bottom-color: var(--verde-700);
+}
+
+/* ---------- 7. INICIO ---------- */
+.inicio {
+  text-align: center;
+}
+
+.inicio__titulo {
+  font-size: 2rem;
+  color: var(--verde-700);
+}
+
+.inicio__texto {
+  color: var(--gris-600);
+  max-width: 600px;
+  margin: 8px auto 24px;
+}
+
+.inicio__tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.tarjeta-inicio {
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.tarjeta-inicio img {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tarjeta-inicio p {
+  color: var(--gris-600);
+  padding: 0 16px;
+}
+
+/* ---------- 8. CATÁLOGO ---------- */
+.catalogo__barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.catalogo__titulo {
+  font-size: 1.3rem;
+}
+
+.etiqueta {
+  font-size: 0.75rem;
+  background-color: var(--verde-100);
+  color: var(--verde-900);
+  padding: 2px 10px;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.etiqueta--axios {
+  background-color: #FFEDD5;
+  color: #9A3412;
+}
+
+.buscador {
+  padding: 10px 14px;
+  border: 2px solid var(--gris-300);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  min-width: 240px;
+  background-color: var(--blanco);
+}
+
+/* ESTADO focus del input */
+.buscador:focus {
+  border-color: var(--verde-500);
+  outline: none;
+}
+
+/* Grilla responsiva de productos con CSS Grid */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.tarjeta {
+  border: 1px solid var(--gris-300);
+  border-radius: var(--radio);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* ESTADO hover de la tarjeta: se eleva */
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta__imagen {
+  height: 160px;
+  display: grid;
+  place-items: center;
+  background-color: var(--blanco);
+}
+
+.tarjeta__imagen img {
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.tarjeta__categoria {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--naranja-600);
+  font-weight: 700;
+}
+
+.tarjeta__titulo {
+  font-size: 0.95rem;
+  flex: 1; /* empuja precio y botón hacia abajo */
+}
+
+.tarjeta__precio {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--verde-700);
+}
+
+/* ---------- 9. ESTADOS DE LA INTERFAZ ---------- */
+.estado {
+  padding: 24px;
+  text-align: center;
+  color: var(--gris-600);
+  border-radius: var(--radio);
+}
+
+.estado--cargando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.estado--error {
+  background-color: var(--rojo-100);
+  color: var(--rojo-600);
+}
+
+.estado--vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.1rem;
+}
+
+.estado--exito {
+  background-color: #DCFCE7;
+  color: #166534;
+  margin-top: 20px;
+}
+
+/* Spinner de carga con animación CSS */
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 4px solid var(--verde-100);
+  border-top-color: var(--verde-700);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 10. CARRITO ---------- */
+.carrito {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.carrito__item {
+  display: grid;
+  grid-template-columns: 70px 1fr auto auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border: 1px solid var(--gris-300);
+  border-radius: var(--radio);
+}
+
+.carrito__imagen {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.carrito__info h3 {
+  font-size: 0.95rem;
+}
+
+.carrito__info p {
+  color: var(--gris-600);
+  font-size: 0.85rem;
+}
+
+.carrito__subtotal {
+  font-weight: 700;
+  color: var(--verde-700);
+  min-width: 100px;
+  text-align: right;
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--gris-300);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contador__btn {
+  background-color: var(--gris-100);
+  border: none;
+  width: 34px;
+  height: 34px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.contador__btn:hover {
+  background-color: var(--verde-100);
+  color: var(--verde-900);
+}
+
+.contador__valor {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ---------- 11. RESUMEN ---------- */
+.resumen {
+  max-width: 480px;
+}
+
+.resumen h2 {
+  margin-bottom: 16px;
+}
+
+.resumen__tabla {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 10px;
+  padding: 16px;
+  background-color: var(--gris-100);
+  border-radius: var(--radio);
+}
+
+.resumen__tabla dd {
+  text-align: right;
+  font-weight: 600;
+}
+
+.resumen__total {
+  border-top: 2px solid var(--gris-300);
+  padding-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--verde-700);
+}
+
+.resumen__acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* ---------- 12. FOOTER ---------- */
+.footer {
+  background-color: var(--gris-900);
+  color: var(--gris-300);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: var(--ambar-400);
+}
+
+.footer a:hover {
+  color: var(--blanco);
+}
+
+.footer__apis {
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+/* ---------- 13. RESPONSIVE (pantallas pequeñas) ---------- */
+@media (max-width: 700px) {
+  .header__lema {
+    display: none;
+  }
+
+  .carrito__item {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .carrito__subtotal {
+    text-align: left;
+  }
+}
