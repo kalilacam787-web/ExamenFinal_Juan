@@ -17,6 +17,15 @@ function Carrito() {
   // Obtiene la acción para quitar un producto por completo.
   const eliminarProducto = useCarritoStore((state) => state.eliminarProducto)
 
+  const unidades = productos.reduce(
+    (total, producto) => total + producto.cantidad,
+    0,
+  )
+  const subtotal = productos.reduce(
+    (total, producto) => total + producto.precio * producto.cantidad,
+    0,
+  )
+
   if (productos.length === 0) {
     return (
 
@@ -29,46 +38,56 @@ function Carrito() {
   }
 
   return (
-    <ul>
-      {productos.map((producto) => (
-        <li key={producto.id}>
-          {producto.imagen && (
-            <img
-              src={producto.imagen}
-              alt={producto.titulo}
-              width="80"
-              loading="lazy"
-            />
-          )}
-          <h3>{producto.titulo}</h3>
-          <p>Precio: {formatearPrecio(producto.precio)}</p>
-          <div>
+    <section aria-labelledby="carrito-resumen-titulo">
+      <ul>
+        {productos.map((producto) => (
+          <li key={producto.id}>
+            {producto.imagen && (
+              <img
+                src={producto.imagen}
+                alt={producto.titulo}
+                width="80"
+                loading="lazy"
+              />
+            )}
+            <h3>{producto.titulo}</h3>
+            <p>Precio: {formatearPrecio(producto.precio)}</p>
+            <div>
+              <button
+                type="button"
+                onClick={() => restarCantidad(producto.id)}
+                aria-label={`Restar una unidad de ${producto.titulo}`}
+              >
+                −
+              </button>
+              <span aria-live="polite"> {producto.cantidad} </span>
+              <button
+                type="button"
+                onClick={() => sumarCantidad(producto.id)}
+                aria-label={`Agregar una unidad de ${producto.titulo}`}
+              >
+                +
+              </button>
+            </div>
+            <p>
+              Subtotal: {formatearPrecio(producto.precio * producto.cantidad)}
+            </p>
             <button
               type="button"
-              onClick={() => restarCantidad(producto.id)}
-              aria-label={`Restar una unidad de ${producto.titulo}`}
+              onClick={() => eliminarProducto(producto.id)}
             >
-              −
+              Quitar producto
             </button>
-            <span aria-live="polite"> {producto.cantidad} </span>
-            <button
-              type="button"
-              onClick={() => sumarCantidad(producto.id)}
-              aria-label={`Agregar una unidad de ${producto.titulo}`}
-            >
-              +
-            </button>
-          </div>
-          <p>Subtotal: {formatearPrecio(producto.precio * producto.cantidad)}</p>
-          <button
-            type="button"
-            onClick={() => eliminarProducto(producto.id)}
-          >
-            Quitar producto
-          </button>
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+      <div className="carrito__resumen">
+        <h3 id="carrito-resumen-titulo">Resumen de la canasta</h3>
+        <p>Unidades: {unidades}</p>
+        <p>Subtotal: {formatearPrecio(subtotal)}</p>
+        <Link to="/compras/resumen">Continuar al resumen del pedido</Link>
+      </div>
+    </section>
   )
 }
 

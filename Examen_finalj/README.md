@@ -20,11 +20,11 @@ npm run dev
 - `/`: inicio
 - `/catalogo`: productos de FakeStoreAPI cargados con Fetch y buscador por nombre
 - `/catalogo/axios`: productos de DummyJSON cargados con Axios y filtro por categoría
-- `/compras`: canasta con controles para aumentar, disminuir y quitar productos
+- `/compras`: canasta con controles de cantidad, subtotal y acceso al resumen
 - `/compras/resumen`: unidades, subtotal, envío de ejemplo y total del pedido
 
-El estado de la canasta se administra con Zustand y permanece en memoria mientras
-la aplicación está abierta. Ambas APIs entregan precios de demostración que se
-muestran en USD; no representan los precios de una tienda real.
+El estado de la canasta se administra con Zustand y permanece guardado en el
+almacenamiento local del navegador entre visitas. Ambas APIs entregan precios de
+demostración que se muestran en USD; no representan los precios de una tienda real.
 
 Los estilos se implementan con CSS puro, sin Bootstrap ni Tailwind.

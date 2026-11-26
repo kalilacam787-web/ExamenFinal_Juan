@@ -225,6 +225,14 @@ button {
   color: #fff;
 }
 
+.carrito__resumen {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #d5e5dd;
+  border-radius: 0.75rem;
+  background: #f0f6f1;
+}
+
 /* Avisos de carga, error, canasta vacía y confirmación. */
 .estado {
   margin: 1rem 0;
