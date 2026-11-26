@@ -21,4 +21,31 @@ export const useCarritoStore = create((set) => ({
         productos: [...state.productos, { ...producto, cantidad: 1 }],
       }
     }),
+
+  sumarCantidad: (id) =>
+    set((state) => ({
+      productos: state.productos.map((producto) =>
+        producto.id === id
+          ? { ...producto, cantidad: producto.cantidad + 1 }
+          : producto,
+      ),
+    })),
+
+  restarCantidad: (id) =>
+    set((state) => ({
+      productos: state.productos
+        .map((producto) =>
+          producto.id === id
+            ? { ...producto, cantidad: producto.cantidad - 1 }
+            : producto,
+        )
+        .filter((producto) => producto.cantidad > 0),
+    })),
+
+  eliminarProducto: (id) =>
+    set((state) => ({
+      productos: state.productos.filter((producto) => producto.id !== id),
+    })),
+
+  vaciarCarrito: () => set({ productos: [] }),
 }))
