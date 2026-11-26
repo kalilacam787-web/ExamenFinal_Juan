@@ -25,6 +25,8 @@ function ProductosAxios() {
   const [error, setError] = useState('')
   // Define qué categoría se consulta; "todas" muestra el catálogo general.
   const [categoria, setCategoria] = useState('todas')
+  // Controla el texto que filtra los productos por nombre.
+  const [busqueda, setBusqueda] = useState('')
   // Usa la acción global para guardar un producto en la canasta.
   const agregarProducto = useCarritoStore((state) => state.agregarProducto)
 
@@ -71,10 +73,22 @@ function ProductosAxios() {
     return () => controlador.abort()
   }, [categoria])
 
+  const productosFiltrados = productos.filter((producto) =>
+    producto.titulo.toLowerCase().includes(busqueda.trim().toLowerCase()),
+  )
+
   return (
     <div>
       <div className="catalogo__barra">
         <h3>Productos de DummyJSON</h3>
+        <input
+          type="search"
+          className="catalogo__buscador"
+          placeholder="Buscar producto..."
+          aria-label="Buscar producto por nombre"
+          value={busqueda}
+          onChange={(event) => setBusqueda(event.target.value)}
+        />
         <select
           className="catalogo__selector"
           value={categoria}
@@ -95,9 +109,11 @@ function ProductosAxios() {
         <p role="alert">{error}</p>
       ) : productos.length === 0 ? (
         <p>No hay productos disponibles.</p>
+      ) : productosFiltrados.length === 0 ? (
+        <p>No hay productos que coincidan con “{busqueda}”.</p>
       ) : (
         <div className="catalogo__grilla">
-          {productos.map((producto) => (
+          {productosFiltrados.map((producto) => (
             <article key={producto.id} className="producto">
               {producto.imagen && (
                 <img
