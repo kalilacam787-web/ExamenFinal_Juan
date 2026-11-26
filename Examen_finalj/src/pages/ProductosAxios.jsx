@@ -23,6 +23,8 @@ function ProductosAxios() {
   const [cargando, setCargando] = useState(true)
   // Conserva el mensaje que se muestra si falla la consulta.
   const [error, setError] = useState('')
+  // Permite repetir la consulta cuando el usuario solicita un reintento.
+  const [intento, setIntento] = useState(0)
   // Define qué categoría se consulta; "todas" muestra el catálogo general.
   const [categoria, setCategoria] = useState('todas')
   // Controla el texto que filtra los productos por nombre.
@@ -71,7 +73,7 @@ function ProductosAxios() {
 
     cargarProductos()
     return () => controlador.abort()
-  }, [categoria])
+  }, [categoria, intento])
 
   const productosFiltrados = productos.filter((producto) =>
     producto.titulo.toLowerCase().includes(busqueda.trim().toLowerCase()),
@@ -106,7 +108,12 @@ function ProductosAxios() {
       {cargando ? (
         <p role="status">Cargando productos con Axios...</p>
       ) : error ? (
-        <p role="alert">{error}</p>
+        <div>
+          <p role="alert">{error}</p>
+          <button type="button" onClick={() => setIntento((actual) => actual + 1)}>
+            Reintentar
+          </button>
+        </div>
       ) : productos.length === 0 ? (
         <p>No hay productos disponibles.</p>
       ) : productosFiltrados.length === 0 ? (

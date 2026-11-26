@@ -16,6 +16,8 @@ function ProductosFetch() {
   const [cargando, setCargando] = useState(true)
   // Conserva el mensaje que se muestra si llega a fallar la consulta.
   const [error, setError] = useState('')
+  // Permite repetir la consulta cuando el usuario solicita un reintento.
+  const [intento, setIntento] = useState(0)
   // Controla el texto usado para filtrar los productos.
   const [busqueda, setBusqueda] = useState('')
   // Usa la acción global para guardar un producto en la canasta.
@@ -63,14 +65,23 @@ function ProductosFetch() {
 
     cargarProductos()
     return () => controlador.abort()
-  }, [])
+  }, [intento])
 
   const productosFiltrados = productos.filter((producto) =>
     producto.titulo.toLowerCase().includes(busqueda.toLowerCase()),
   )
 
   if (cargando) return <p role="status">Cargando productos de FakeStoreAPI...</p>
-  if (error) return <p role="alert">{error}</p>
+  if (error) {
+    return (
+      <div>
+        <p role="alert">{error}</p>
+        <button type="button" onClick={() => setIntento((actual) => actual + 1)}>
+          Reintentar
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div>
