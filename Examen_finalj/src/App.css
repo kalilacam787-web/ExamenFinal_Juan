@@ -1,6 +1,7 @@
 /*
- * Conserva estilos de la plantilla inicial de Vite para el contador y el hero.
+ * Estilos de la plantilla inicial de Vite, conservados para sus bloques de demostración.
  */
+/* Contador y figuras del encabezado de la plantilla. */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -59,6 +60,7 @@
   }
 }
 
+/* Alineación del contenido de demostración. */
 #center {
   display: flex;
   flex-direction: column;
@@ -98,6 +100,7 @@
   }
 }
 
+/* Columnas, enlaces e iconos de los siguientes pasos. */
 #docs {
   border-right: 1px solid var(--border);
 

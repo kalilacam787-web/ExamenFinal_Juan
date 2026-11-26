@@ -1,5 +1,5 @@
 /*
- * Agrupa la canasta y el pedido, mostrando las unidades actuales.
+ * Sección para consultar la canasta y el pedido, con las unidades actuales.
  */
 import { NavLink, Outlet } from 'react-router-dom'
 

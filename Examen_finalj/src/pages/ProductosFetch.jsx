@@ -21,7 +21,7 @@ function ProductosFetch() {
   // Usa la acción global para guardar un producto en la canasta.
   const agregarProducto = useCarritoStore((state) => state.agregarProducto)
 
-  // Carga el catálogo al entrar y cancela la petición al salir de la página.
+  // Esto permite cargar el catálogo al entrar y cancela la petición al salir de la página.
   useEffect(() => {
     const controlador = new AbortController()
 

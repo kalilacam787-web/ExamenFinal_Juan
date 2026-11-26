@@ -29,7 +29,7 @@ function Resumen() {
   const total = subtotal + envio
   const canastaVacia = productos.length === 0
 
-  // Oculta el aviso unos segundos después de mostrarlo.
+  // Oculta el aviso por unos segundos después de mostrarlo.
   useEffect(() => {
     if (!mensaje) return
 

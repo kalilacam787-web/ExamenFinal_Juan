@@ -1,5 +1,5 @@
 /*
- * Define la presentación general de la tienda, sus secciones y estados visibles.
+ * Presentación general de la tienda, sus secciones y estados visibles.
  */
 :root {
   font-family: system-ui, 'Segoe UI', sans-serif;
@@ -28,6 +28,7 @@ button {
   cursor: pointer;
 }
 
+/* Cabecera fija con la marca y el contador de la canasta. */
 .header {
   position: fixed;
   z-index: 10;
@@ -81,6 +82,7 @@ button {
   color: #fff;
 }
 
+/* Navegación principal y estilo de la ruta activa. */
 .navbar {
   display: flex;
   justify-content: center;
@@ -112,6 +114,7 @@ button {
   background: #164e3b;
 }
 
+/* Espacio para el contenido y datos del pie de página. */
 .contenido {
   width: min(100% - 2rem, 72rem);
   min-height: 60vh;
@@ -143,6 +146,7 @@ button {
   color: #164e3b;
 }
 
+/* Portada y pestañas para recorrer los catálogos. */
 .seccion-catalogo__banner {
   display: block;
   width: 100%;
@@ -199,6 +203,7 @@ button {
   gap: 1rem;
 }
 
+/* Tarjetas que presentan los productos. */
 .producto {
   padding: 1rem;
   border: 1px solid #d5e5dd;
@@ -220,6 +225,7 @@ button {
   color: #fff;
 }
 
+/* Avisos de carga, error, canasta vacía y confirmación. */
 .estado {
   margin: 1rem 0;
   padding: 1rem;
@@ -271,6 +277,7 @@ p[role='alert'] {
   color: #065f46;
 }
 
+/* Mensaje y botón de la página no encontrada. */
 .no-encontrado {
   padding: 3rem 1rem;
   text-align: center;
@@ -294,6 +301,7 @@ p[role='alert'] {
   text-decoration: none;
 }
 
+/* Respuestas al pasar el cursor, pulsar o navegar con el teclado. */
 button:not(:disabled):hover,
 .no-encontrado__boton:hover {
   filter: brightness(0.9);
@@ -327,6 +335,7 @@ button:disabled {
   text-decoration: underline;
 }
 
+/* Ajustes para que la navegación se acomode en pantallas pequeñas. */
 @media (max-width: 540px) {
   .navbar {
     flex-wrap: wrap;
