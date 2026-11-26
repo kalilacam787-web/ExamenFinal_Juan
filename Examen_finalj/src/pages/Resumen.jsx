@@ -31,7 +31,7 @@ function Resumen() {
   }, [mensaje])
 
   function finalizarPedido() {
-    setMensaje(`Pedido de demostración finalizado por ${formatearPrecio(total)}.`)
+    setMensaje(`Pedido confirmado por ${formatearPrecio(total)} (demostración).`)
     vaciarCarrito()
   }
 
@@ -61,11 +61,15 @@ function Resumen() {
       </div>
 
       {canastaVacia && (
-        <p>
+        <p className="estado estado--vacio">
           La canasta está vacía. <Link to="/catalogo">Ir a la vitrina</Link>
         </p>
       )}
-      {mensaje && <p role="status">{mensaje}</p>}
+      {mensaje && (
+        <p className="estado estado--exito" role="status">
+          {mensaje}
+        </p>
+      )}
     </section>
   )
 }

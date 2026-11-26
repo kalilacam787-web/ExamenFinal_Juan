@@ -11,7 +11,7 @@ function Carrito() {
 
   if (productos.length === 0) {
     return (
-      <div>
+      <div className="estado estado--vacio">
         <p>Tu canasta está vacía.</p>
         <Link to="/catalogo">Ir a la vitrina</Link>
       </div>
