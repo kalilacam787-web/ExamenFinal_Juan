@@ -140,6 +140,78 @@ button {
   color: #164e3b;
 }
 
+.seccion-catalogo__banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+.catalogo__pestanas {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  border-bottom: 1px solid #d5e5dd;
+}
+
+.catalogo__pestana {
+  padding: 0.65rem 1rem;
+  border-bottom: 3px solid transparent;
+  color: #34443b;
+  text-decoration: none;
+}
+
+.catalogo__pestana.active {
+  border-bottom-color: #164e3b;
+  color: #164e3b;
+  font-weight: 700;
+}
+
+.seccion-catalogo__contenido {
+  padding: 0.5rem 0;
+}
+
+.catalogo__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.catalogo__buscador {
+  min-width: min(100%, 16rem);
+  padding: 0.6rem 0.75rem;
+}
+
+.catalogo__grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+}
+
+.producto {
+  padding: 1rem;
+  border: 1px solid #d5e5dd;
+  border-radius: 0.75rem;
+}
+
+.producto img {
+  display: block;
+  width: 100%;
+  height: 10rem;
+  object-fit: contain;
+}
+
+.producto button {
+  padding: 0.6rem 0.85rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #164e3b;
+  color: #fff;
+}
+
 @media (max-width: 540px) {
   .navbar {
     flex-wrap: wrap;

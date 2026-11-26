@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="catalogo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#catalogo)"/>
+  <circle cx="1080" cy="40" r="140" fill="#fff" opacity=".08"/>
+  <circle cx="960" cy="280" r="90" fill="#fff" opacity=".08"/>
+  <g transform="translate(860 70)">
+    <rect x="0" y="40" width="160" height="150" rx="16" fill="#fbbf24"/>
+    <path d="M40 40v-12a40 40 0 0 1 80 0v12" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+    <rect x="0" y="40" width="160" height="26" rx="10" fill="#f59e0b"/>
+  </g>
+  <g transform="translate(700 140)">
+    <rect width="120" height="90" rx="10" fill="#fff"/>
+    <rect x="50" width="20" height="90" fill="#fde68a"/>
+  </g>
+  <text x="70" y="140" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" fill="#fff">Catálogo</text>
+  <text x="70" y="195" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#ccfbf1">Productos para tu mercado</text>
+</svg>

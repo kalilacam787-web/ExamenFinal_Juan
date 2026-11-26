@@ -6,6 +6,7 @@ import SectionCompras from './sections/SectionCompras.jsx'
 import Carrito from './pages/Carrito.jsx'
 import Inicio from './pages/Inicio.jsx'
 import NoEncontrado from './pages/NoEncontrado.jsx'
+import ProductosAxios from './pages/ProductosAxios.jsx'
 import ProductosFetch from './pages/ProductosFetch.jsx'
 import Resumen from './pages/Resumen.jsx'
 
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<Inicio />} />
         <Route path="catalogo" element={<SectionCatalogo />}>
           <Route index element={<ProductosFetch />} />
+          <Route path="axios" element={<ProductosAxios />} />
         </Route>
         <Route path="compras" element={<SectionCompras />}>
           <Route index element={<Carrito />} />
