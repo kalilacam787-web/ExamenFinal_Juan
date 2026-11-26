@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#g)"/>
+  <circle cx="1080" cy="40" r="140" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="960" cy="280" r="90" fill="#FFFFFF" opacity="0.08"/>
+  <!-- Bolsa de compras -->
+  <g transform="translate(860 70)">
+    <rect x="0" y="40" width="160" height="150" rx="16" fill="#FBBF24"/>
+    <path d="M40 40 v-12 a40 40 0 0 1 80 0 v12" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+    <rect x="0" y="40" width="160" height="26" rx="10" fill="#F59E0B"/>
+  </g>
+  <!-- Caja -->
+  <g transform="translate(700 140)">
+    <rect width="120" height="90" rx="10" fill="#FFFFFF"/>
+    <rect x="50" width="20" height="90" fill="#FDE68A"/>
+  </g>
+  <text x="70" y="140" font-family="Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" fill="#FFFFFF">Catálogo</text>
+  <text x="70" y="195" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#CCFBF1">Productos cargados desde APIs libres</text>
+</svg>
