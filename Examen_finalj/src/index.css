@@ -109,11 +109,35 @@ button {
   background: #164e3b;
 }
 
-main {
+.contenido {
   width: min(100% - 2rem, 72rem);
   min-height: 60vh;
   margin: 0 auto;
-  padding: 1.5rem 0;
+  padding: 1.5rem 0 7rem;
+}
+
+.footer {
+  position: fixed;
+  z-index: 9;
+  inset: auto 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.25rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid #d5e5dd;
+  background: #fff;
+  color: #34443b;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: #164e3b;
 }
 
 @media (max-width: 540px) {

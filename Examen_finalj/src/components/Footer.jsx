@@ -1,13 +1,16 @@
 function Footer() {
+  const anio = new Date().getFullYear()
+
   return (
-    <footer>
-      <p>Mercado local de Popayán</p>
+    <footer className="footer">
+      <p>Aprendiz: Kamila Camilo</p>
+      <p>Ficha: 3223898</p>
+      <p>Año: {anio}</p>
       <p>
-        Productos de demostración suministrados por{' '}
+        API:{' '}
         <a href="https://dummyjson.com" target="_blank" rel="noreferrer">
           DummyJSON
         </a>
-        .
       </p>
     </footer>
   )
